@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rotation_market_shoes/app/core/theme/colors.dart';
 import 'package:rotation_market_shoes/app/core/utils/mocks/list_products_mock.dart';
 import 'package:rotation_market_shoes/app/data/models/product_model.dart';
+import 'package:page_transition/page_transition.dart' as page;
+import 'package:rotation_market_shoes/app/modules/product_details/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -81,6 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Image.asset(
             'assets/ic_search.png',
           ),
+          const SizedBox(
+            width: 16.0,
+          )
         ],
         leading: IconButton(
           icon: Image.asset(
@@ -214,7 +219,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          page.PageTransition(
+                            child: DetailsScreen(),
+                            type: page.PageTransitionType.rightToLeft,
+                          ),
+                        );
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(
                           left: 10.0,
@@ -306,10 +319,42 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.myOrange,
         onPressed: () {},
         child: Container(
+          margin: const EdgeInsets.all(15.0),
           child: Icon(
             Icons.home_outlined,
             color: Colors.white,
           ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(
+              width: 30.0,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                'assets/ic_shop.png',
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                'assets/ic_wishlist.png',
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                'assets/ic_notif.png',
+              ),
+            ),
+            const SizedBox(
+              width: 2.0,
+            )
+          ],
         ),
       ),
     );
